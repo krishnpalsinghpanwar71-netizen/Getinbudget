@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GetInBudget - Best Deals India</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root { --orange:#FF6B00; --red:#FF2200; --dark:#0A0A0A; --card:#111; --border:#222; --text:#EEE; --muted:#888; }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--dark);color:var(--text);font-family:'Poppins',sans-serif;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;} ::-webkit-scrollbar-thumb{background:var(--orange);border-radius:4px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(10,10,10,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(10px);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;background:linear-gradient(90deg,var(--orange),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.insta-link{background:var(--orange);color:#000;font-size:11px;font-weight:700;padding:8px 16px;border-radius:4px;text-decoration:none;letter-spacing:1px;}
+.hero{min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 20px 40px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(255,107,0,0.1) 0%,transparent 70%);}
+.hero-tag{display:inline-block;background:rgba(255,107,0,0.12);border:1px solid rgba(255,107,0,0.3);color:var(--orange);font-size:10px;font-weight:700;letter-spacing:3px;padding:7px 18px;border-radius:50px;margin-bottom:20px;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,12vw,100px);line-height:0.9;letter-spacing:3px;}
+.hero h1 span{background:linear-gradient(90deg,var(--orange),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{color:var(--muted);font-size:14px;max-width:380px;line-height:1.7;margin:16px auto 24px;}
+.btn-primary{background:var(--orange);color:#000;padding:13px 28px;border-radius:6px;font-weight:700;font-size:13px;letter-spacing:1px;text-decoration:none;display:inline-block;}
+.marquee-wrap{overflow:hidden;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#0d0d0d;margin-top:30px;width:100vw;margin-left:-20px;}
+.marquee{display:flex;gap:30px;animation:marquee 18s linear infinite;white-space:nowrap;}
+.marquee span{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--muted);}
+.marquee span.hl{color:var(--orange);}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.section{padding:50px 20px;max-width:1000px;margin:0 auto;}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:2px;}
+.section-title span{color:var(--orange);}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:14px;}
+.product-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all 0.25s;cursor:pointer;text-decoration:none;color:var(--text);display:block;}
+.product-card:hover{border-color:var(--orange);transform:translateY(-4px);box-shadow:0 8px 25px rgba(255,107,0,0.15);}
+.product-img-wrap{width:100%;aspect-ratio:1;overflow:hidden;background:#1a1a1a;display:flex;align-items:center;justify-content:center;position:relative;}
+.product-img-wrap img{width:100%;height:100%;object-fit:cover;}
+.emoji-ph{font-size:48px;}
+.product-badge{position:absolute;top:8px;left:8px;background:var(--orange);color:#000;font-size:9px;font-weight:700;padding:3px 7px;border-radius:3px;letter-spacing:1px;z-index:1;}
+.product-info{padding:10px 12px;}
+.product-name{font-size:12px;font-weight:600;line-height:1.4;margin-bottom:5px;}
+.product-price{font-size:15px;font-weight:700;color:var(--orange);}
+.product-original{font-size:10px;color:var(--muted);text-decoration:line-through;margin-left:5px;}
+.product-platform{font-size:10px;color:var(--muted);margin-top:3px;font-weight:600;letter-spacing:1px;}
+.empty-msg{color:var(--muted);font-size:13px;text-align:center;padding:40px;grid-column:1/-1;border:1px dashed var(--border);border-radius:12px;}
+.insta-banner{background:linear-gradient(135deg,#1a0800,#0a0a1a);border:1px solid rgba(255,107,0,0.25);border-radius:16px;padding:28px 20px;text-align:center;margin:0 20px 50px;max-width:960px;margin-left:auto;margin-right:auto;}
+.insta-banner h2{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--orange);letter-spacing:2px;}
+.insta-banner p{color:var(--muted);font-size:12px;margin:8px 0 16px;}
+footer{border-top:1px solid var(--border);padding:24px 20px;text-align:center;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;background:linear-gradient(90deg,var(--orange),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;}
+footer p{color:var(--muted);font-size:10px;line-height:1.8;}
+footer a{color:var(--orange);text-decoration:none;}
+@media(max-width:480px){.product-grid{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">GetInBudget</div>
+  <a href="https://www.instagram.com/getinbudget" target="_blank" class="insta-link">📸 INSTAGRAM</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">⚡ SMART DEALS • BEST PRICE</div>
+  <h1>GET THE <span>BEST</span><br>DEALS IN<br><span>BUDGET</span></h1>
+  <p>India ke sabse saste products — Bikes, Fashion, Gadgets sab ek jagah!</p>
+  <a href="#products" class="btn-primary">🔥 Deals Dekho</a>
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <span class="hl">🔥 BEST DEALS</span><span>•</span><span>BIKE MODS</span><span>•</span>
+      <span class="hl">💰 SAVE MONEY</span><span>•</span><span>FASHION</span><span>•</span>
+      <span class="hl">⚡ DAILY OFFERS</span><span>•</span><span>GADGETS</span><span>•</span>
+      <span class="hl">🏍️ MT15 R15</span><span>•</span><span>BUDGET SHOPPING</span><span>•</span>
+      <span class="hl">🔥 BEST DEALS</span><span>•</span><span>BIKE MODS</span><span>•</span>
+      <span class="hl">💰 SAVE MONEY</span><span>•</span><span>FASHION</span><span>•</span>
+      <span class="hl">⚡ DAILY OFFERS</span><span>•</span><span>GADGETS</span><span>•</span>
+      <span class="hl">🏍️ MT15 R15</span><span>•</span><span>BUDGET SHOPPING</span><span>•</span>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="products">
+  <div class="section-header"><div class="section-title">🏍️ BIKE <span>MODS</span></div></div>
+  <div class="product-grid" id="bike-grid"></div>
+</div>
+<div class="section">
+  <div class="section-header"><div class="section-title">👕 BUDGET <span>FASHION</span></div></div>
+  <div class="product-grid" id="fashion-grid"></div>
+</div>
+<div class="section">
+  <div class="section-header"><div class="section-title">🎧 <span>GADGETS</span></div></div>
+  <div class="product-grid" id="gadget-grid"></div>
+</div>
+
+<div class="insta-banner">
+  <h2>⚡ DAILY DEALS ⚡</h2>
+  <p>Roz naye deals — Instagram pe follow karo!</p>
+  <a href="https://www.instagram.com/getinbudget" target="_blank" class="btn-primary">📸 @getinbudget Follow Karo</a>
+</div>
+
+<footer>
+  <div class="footer-logo">GETINBUDGET</div>
+  <p>India ke best budget deals 🇮🇳<br><a href="https://www.instagram.com/getinbudget">Instagram</a></p>
+  <p style="margin-top:12px;font-size:10px;">⚠️ Affiliate links hain — kharidne par hume commission milta hai, aapko extra charge nahi.</p>
+</footer>
+
+<script>
+function getProducts(){ return JSON.parse(localStorage.getItem('gib_v2')||'[]'); }
+function renderAll(){
+  ['bike','fashion','gadget'].forEach(cat=>{
+    const grid=document.getElementById(cat+'-grid');
+    const items=getProducts().filter(p=>p.cat===cat);
+    if(!items.length){ grid.innerHTML='<div class="empty-msg">Jald hi products aayenge! 🔥</div>'; return; }
+    grid.innerHTML=items.map(p=>`
+      <a href="${p.link}" target="_blank" class="product-card">
+        <div class="product-img-wrap">
+          ${p.img?`<img src="${p.img}" alt="${p.name}" onerror="this.style.display='none';this.nextSibling.style.display='flex'">`:''}
+          <div class="emoji-ph" style="${p.img?'display:none':''}">🛍️</div>
+          ${p.badge?`<div class="product-badge">${p.badge}</div>`:''}
+        </div>
+        <div class="product-info">
+          <div class="product-name">${p.name}</div>
+          <div><span class="product-price">${p.price}</span>${p.orig?`<span class="product-original">${p.orig}</span>`:''}</div>
+          <div class="product-platform">${p.platform}</div>
+        </div>
+      </a>`).join('');
+  });
+}
+renderAll();
+</script>
+</body>
+</html>
